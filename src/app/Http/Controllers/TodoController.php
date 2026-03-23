@@ -9,9 +9,14 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todo = new Todo();//Todoクラスのインスタンス化
+        $todo = new Todo(); //Todoクラスのインスタンス化
         $todos = $todo->all();
 
         return view('todo.index', ['todos' => $todos]);
+    }
+
+    public function create()
+    {
+        return view('todo.create');
     }
 }
