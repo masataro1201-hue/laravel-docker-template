@@ -12,8 +12,6 @@ class TodoController extends Controller
     {
         $todo = new Todo(); //Todoクラスのインスタンス化
         $todos = $todo->all();
-
-
         return view('todo.index', ['todos' => $todos]);
     }
 
