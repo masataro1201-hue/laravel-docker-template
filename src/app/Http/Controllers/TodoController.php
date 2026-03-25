@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoRequest;
 use Illuminate\Http\Request;
 use App\Todo;
 use Facade\FlareClient\View;
@@ -26,7 +27,7 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
-    public function store(Request $request) //メソッドインジェクション
+    public function store(TodoRequest $request) //メソッドインジェクション
     {
         $inputs = $request->all();
 
@@ -47,7 +48,7 @@ class TodoController extends Controller
         return view('todo.edit', ['todo' => $todo]);
     }
 
-    public function update(Request $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
+    public function update(TodoRequest $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
     {
         $inputs = $request->all();
         $todo = $this->todo;
