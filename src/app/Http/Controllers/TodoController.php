@@ -12,7 +12,7 @@ class TodoController extends Controller
     {
         $todo = new Todo(); //Todoクラスのインスタンス化
         $todos = $todo->all();
-        return view('todo.index', ['todos' => $todos]);
+        return view('todo.index', ['test' => $todos]);
     }
 
     public function create()
@@ -20,14 +20,19 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request) //メソッドインジェクション
     {
         $inputs = $request->all();
 
         $todo = new Todo();
         $todo->fill($inputs);
-        $todo->save();
-
         return redirect()->route('todo.index');
+    }
+
+    public function show($id)
+    {
+        $model = new Todo();
+        $todo = $model->find($id);
+        return view('todo.show', ['todo' => $todo]);
     }
 }
