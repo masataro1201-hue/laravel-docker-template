@@ -30,7 +30,7 @@ class TodoController extends Controller
     public function store(TodoRequest $request) //メソッドインジェクション
     {
         $inputs = $request->all();
-
+        
         $this->todo->fill($inputs);
         $this->todo->save();
         return redirect()->route('todo.index');
