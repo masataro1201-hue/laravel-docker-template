@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Todo;
-
+use Facade\FlareClient\View;
 
 class TodoController extends Controller
 {
     private $todo;
 
-    public function __construct(Todo $todo)//コンストラクタインジェクション
+    public function __construct(Todo $todo) //コンストラクタインジェクション
     {
         $this->todo = $todo;
     }
@@ -30,8 +30,8 @@ class TodoController extends Controller
     {
         $inputs = $request->all();
 
-        $this->todo->fill($inputs); 
-        $this->todo->save(); 
+        $this->todo->fill($inputs);
+        $this->todo->save();
         return redirect()->route('todo.index');
     }
 
@@ -39,5 +39,11 @@ class TodoController extends Controller
     {
         $todo = $this->todo->find($id);
         return view('todo.show', ['todo' => $todo]);
+    }
+
+    public function edit($id)
+    {
+        $todo = $this->todo->find($id);
+        return view('todo.edit', ['todo' => $todo]);
     }
 }
